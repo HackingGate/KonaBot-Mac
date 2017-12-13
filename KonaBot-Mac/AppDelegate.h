@@ -10,7 +10,7 @@
 #import "Utility.h"
 #import "KonaManager.h"
 
-#define R18Enabled NO
+#define R18Enabled YES
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
