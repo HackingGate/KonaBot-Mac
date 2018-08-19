@@ -14,7 +14,7 @@
 @property (weak) IBOutlet NSButton *autoUpdateButton;
 @property (weak) IBOutlet NSPopUpButton *updateIntervalButton;
 @property (weak) IBOutlet NSTextField *intervalLabel;
-
+@property (weak) IBOutlet NSTextField *keywordField;
 @end
 
 @implementation PreferenceViewController
@@ -27,11 +27,15 @@
 	
 	BOOL autoUpdate = [Utility autoUpdate];
 	_autoUpdateButton.state = autoUpdate ? NSOnState : NSOffState;
-	_updateIntervalButton.enabled = autoUpdate;
-	_intervalLabel.textColor = autoUpdate ? [NSColor blackColor] : [NSColor lightGrayColor];
+	_updateIntervalButton.hidden = !autoUpdate;
+	//_intervalLabel.textColor = autoUpdate ? [NSColor blackColor] : [NSColor lightGrayColor];
+    _intervalLabel.hidden = !autoUpdate;
+    
 	
 	NSInteger updateInterval = [Utility updateInterval];
 	[_updateIntervalButton selectItemWithTitle:[Utility stringFromSeconds:updateInterval]];
+    
+    [_keywordField setStringValue:[Utility keyword]];
 }
 
 - (IBAction)minimumScoreUpdated:(NSPopUpButton *)sender {
@@ -41,14 +45,19 @@
 
 - (IBAction)autoUpdateToggled:(NSButton *)sender {
 	BOOL state = sender.state == NSOnState;
-	_updateIntervalButton.enabled = state;
-	_intervalLabel.textColor = state ? [NSColor blackColor] : [NSColor lightGrayColor];
+	_updateIntervalButton.hidden = !state;
+	//_intervalLabel.textColor = state ? [NSColor blackColor] : [NSColor lightGrayColor];
+    _intervalLabel.hidden = !state;
 	[Utility setAutoUpdate:state];
 }
 
 - (IBAction)updateIntervalChanged:(NSPopUpButton *)sender {
 	NSString *title = sender.selectedItem.title;
 	[Utility setUpdateInterval:[Utility secondsFromString:title]];
+}
+- (IBAction)updateKeyword:(NSTextField *)sender {
+    NSString *keyword = sender.stringValue;
+    [Utility setKeyword:keyword];
 }
 
 @end

@@ -45,11 +45,16 @@
 - (RACSignal *)getRandomPost {
 	NSLog(@"getting");
 	NSString *url = @"http://konachan.com/post.json";
-	NSDictionary *parameters = @{@"tags": @"landscape order:random", @"limit": @(1)};
+    NSString *keyword = [NSString stringWithFormat:@"%@ order:random",[Utility keyword]];
+	NSDictionary *parameters = @{@"tags": keyword, @"limit": @(1)};
 	return [[Utility jsonFromURL:url parameters:parameters] flattenMap:^RACStream *(NSArray *jsons) {
-		
+        if(jsons.count <=0){
+            return nil;
+        }
 		if ([[jsons[0] objectForKey:@"score"] integerValue] < [Utility minimumScore] || ([Utility r18] && R18Enabled ? false : ![[jsons[0] objectForKey:@"rating"] isEqualToString:@"s"])){
-			return [self getRandomPost];
+            NSLog(@"No result. Could not change wallpapler");
+            NSRunAlertPanel(@"Error: No result.", @"Please change keyword in preference panel.",nil,nil,nil);
+            return nil;//[self getRandomPost];
 		}
 		
 		return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {

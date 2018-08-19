@@ -16,6 +16,9 @@
 + (NSString *) supportPath;
 + (RACSignal *) clearSupportDirectory;
 
++ (NSString *) keyword;
++ (void) setKeyword: (NSString *)keyword;
+
 + (BOOL) r18;
 + (void) setR18: (BOOL) r18;
 

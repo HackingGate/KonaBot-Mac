@@ -10,6 +10,16 @@
 
 
 @implementation Utility
++ (NSString *) keyword{
+    id keyword = [[NSUserDefaults standardUserDefaults] objectForKey:@"keyword"];
+    if (!keyword) {
+        return @"landscape";
+    }
+    return keyword;
+}
++ (void) setKeyword: (NSString *)keyword{
+    [[NSUserDefaults standardUserDefaults] setObject:keyword forKey:@"keyword"];
+}
 
 + (BOOL)r18 {
 	return [[NSUserDefaults standardUserDefaults] boolForKey:@"r18"];

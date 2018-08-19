@@ -87,11 +87,11 @@
 		return [Utility setWallpaper:path];
 	}] subscribeError:^(NSError * _Nullable error) {
 		NSLog(@"failed with error: %@", error);
-		getting = NO;
+        self->getting = NO;
 	} completed:^{
 		NSLog(@"succeed");
 		[Utility setLastUpdateDate:[NSDate date]];
-		getting = NO;
+        self->getting = NO;
 	}];
 }
 
