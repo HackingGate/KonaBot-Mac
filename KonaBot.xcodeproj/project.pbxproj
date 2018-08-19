@@ -392,7 +392,7 @@
 				INFOPLIST_FILE = "KonaBot-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HTandL.hkalexling.KonaBot-Mac";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bi119aTe5hXk.hkalexling.KonaBot-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -409,7 +409,7 @@
 				INFOPLIST_FILE = "KonaBot-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HTandL.hkalexling.KonaBot-Mac";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bi119aTe5hXk.hkalexling.KonaBot-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
