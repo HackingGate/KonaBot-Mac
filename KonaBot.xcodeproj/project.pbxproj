@@ -173,6 +173,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -392,6 +393,7 @@
 				INFOPLIST_FILE = "KonaBot-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bi119aTe5hXk.hkalexling.KonaBot-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -409,6 +411,7 @@
 				INFOPLIST_FILE = "KonaBot-Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bi119aTe5hXk.hkalexling.KonaBot-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
