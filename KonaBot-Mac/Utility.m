@@ -29,6 +29,20 @@
 	[[NSUserDefaults standardUserDefaults] setBool:r18 forKey:@"r18"];
 }
 
++ (NSURL *)postURL {
+    return [[NSUserDefaults standardUserDefaults] URLForKey:@"postURL"];
+}
+
++ (void)setPostID: (NSInteger)postID {
+    NSURL *postURL;
+    if ([self r18]) {
+        postURL = [NSURL URLWithString:[@"https://konachan.com/post/show/" stringByAppendingFormat:@"%@", @(postID)]];
+    } else {
+        postURL = [NSURL URLWithString:[@"https://konachan.net/post/show/" stringByAppendingFormat:@"%@", @(postID)]];
+    }
+    [[NSUserDefaults standardUserDefaults] setURL:postURL forKey:@"postURL"];
+}
+
 + (NSInteger)minimumScore {
 	NSNumber *num = [[NSUserDefaults standardUserDefaults] objectForKey:@"minimumScore"];
 	if (num){

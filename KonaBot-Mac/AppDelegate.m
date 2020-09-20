@@ -15,6 +15,7 @@
 @implementation AppDelegate{
 	NSStatusItem *item;
 	NSMenuItem *nextItem;
+    NSMenuItem *currentID;
 	NSMenuItem *r18Item;
 	KonaManager *manager;
 	NSWindowController *preferenceWC;
@@ -31,6 +32,12 @@
 	[menu addItem:[[NSMenuItem alloc] initWithTitle:@"Update" action:@selector(update) keyEquivalent:@""]];
 	nextItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
 	[menu addItem:nextItem];
+    currentID = [[NSMenuItem alloc] initWithTitle:@"Open URL" action:nil keyEquivalent:@""];
+    if ([Utility postURL]) {
+        // enable
+        currentID.action = @selector(openCurrentID);
+    }
+    [menu addItem:currentID];
 	[menu addItem:[NSMenuItem separatorItem]];
 	r18Item = [[NSMenuItem alloc] initWithTitle: [Utility r18] ? @"Disable R18" : @"Enable R18" action:@selector(toggleR18) keyEquivalent:@""];
 	if (R18Enabled) [menu addItem:r18Item];
@@ -62,6 +69,11 @@
 	[self updateWallpaper];
 }
 
+- (void)openCurrentID {
+    NSURL *postURL = [Utility postURL];
+    [[NSWorkspace sharedWorkspace] openURL:postURL];
+}
+
 - (void)preference {
 	preferenceWC = [[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"preferenceWindowController"];
 	[preferenceWC showWindow:self];
@@ -82,6 +94,8 @@
 	getting = YES;
 	[[[[manager getRandomPost] flattenMap:^RACStream *(KonaPost *post) {
 		NSLog(@"score: %@", @(post.score));
+        self->currentID.action = @selector(openCurrentID);
+        [Utility setPostID:post.postID];
 		return [Utility saveImageToSupport:post.image];
 	}] flattenMap:^RACStream *(NSString *path) {
 		return [Utility setWallpaper:path];
