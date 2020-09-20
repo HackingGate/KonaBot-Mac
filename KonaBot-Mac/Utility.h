@@ -22,6 +22,9 @@
 + (BOOL) r18;
 + (void) setR18: (BOOL) r18;
 
++ (NSURL *)postURL;
++ (void) setPostID: (NSInteger) postID;
+
 + (NSInteger) minimumScore;
 + (void) setMinimumScore: (NSInteger) score;
 
